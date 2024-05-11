@@ -82,7 +82,7 @@ npm i -g eth-blob-uploader
 
 // upload the two files, you can use our self-built Sepolia RPC: http://88.99.30.186:8545
 eth-blob-uploader -r <Sepolia RPC> -p 0x112233... -f app.html -t <any address>
-eth-blob-uploader -r <Sepolia RPC> -p 0x112233... -f app.html -t <any address>   
+eth-blob-uploader -r <Sepolia RPC> -p 0x112233... -f degen.jpeg -t <any address>   
 ```
 You can see it only takes 2 transactions to upload the two files, and the cost is incredibly low when the BLOB gas price is low!
 
