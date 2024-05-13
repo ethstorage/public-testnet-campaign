@@ -39,6 +39,8 @@ Overall, the primary objective is to upload these two files to the chain and the
 
 [web3://0x56b4c1b43633ce048e4d03664d31b18e56ce6943:3333/app.html](https://0x56b4c1b43633ce048e4d03664d31b18e56ce6943.3333.w3link.io/app.html)
 
+_Note: Due to the drastic changes in the gas prices on the Sepolia network, it is hard to accurately predict the required gas fees. It is recommended to prepare at least 1 Sepolia ETH in the account before testing._
+
 ## Step 1: Install ethfs-cli
 If you have not already done so, you can install ethfs-cli using the following command:
 ```
