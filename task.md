@@ -35,6 +35,12 @@ contract App {
     }
 }
 ```
+Overall, the primary objective is to upload these two files to the chain and then access the entire webpage using the web3:// access protocol, similar to this:
+
+[web3://0x56b4c1b43633ce048e4d03664d31b18e56ce6943:3333/app.html](https://0x56b4c1b43633ce048e4d03664d31b18e56ce6943.3333.w3link.io/app.html)
+
+_Note: Due to the drastic changes in the gas prices on the Sepolia network, it is hard to accurately predict the required gas fees. It is recommended to prepare at least 1 Sepolia ETH in the account before testing._
+
 ## Step 1: Install ethfs-cli
 If you have not already done so, you can install ethfs-cli using the following command:
 ```
@@ -69,10 +75,21 @@ Transaction Id: 0x958f7d17dc9622b9a8f44badeb968aebd4dcbbaf4adc3d6079568eec933366
 degen.jpeg, chunkId: 0
 Transaction Id: 0xe9620334064614b92ce195c19e42d6e672bd76c55f7551609d7bf1066467177d
 ...
+Total Upload Chunk Count: 12
+Total Upload File Size: 258.77734375 KB
+Total Cost: 0.6 ETH
 ```
-It took 12 transactions to deploy the application, costing us more than 0.3 ETH, due to the high costs of Ethereum's native storage. Nonetheless, now you can access this unstoppable dApp via web3://
+It took 12 transactions to deploy the application, costing us about 0.6 ETH at the gas price of 10 Gwei, due to the high costs of Ethereum's native storage. Nonetheless, now you can access this unstoppable dApp via web3://:
 
-[web3://0x49EDFB27a463545337487D39a8349760B345F160:11155111/app.html](https://0x49edfb27a463545337487d39a8349760b345f160.sep.w3link.io/app.html)
+    web3://<flat directory address>:sep/app.html
+
+For example, 
+
+[web3://0x49EDFB27a463545337487D39a8349760B345F160:sep/app.html](https://0x49edfb27a463545337487d39a8349760b345f160.sep.w3link.io/app.html)
+
+
+You may have noticed that the hyperlink directs to `w3link.io`, which serves as a [web3:// gateway](https://docs.web3url.io/web3-clients/https-gateway) facilitating users in accessing the web3 protocol engine from browsers like Chrome.
+
 
 ## Step 4: Use EIP-4844 BLOB to reduce the uploading cost
 Ethereum's Cancun upgrade introduced BLOBs, which greatly reduced the data publishing cost for Layer 2. Naturally, this raises the question: can we use it to upload our application? The answer is YES! The EthStorage team developed a tool named [eth-blob-uploader](https://www.npmjs.com/package/eth-blob-uploader) that helps us upload files using EIP-4844 BLOBs! Follow the instructions below to give it a try:
@@ -81,8 +98,8 @@ Ethereum's Cancun upgrade introduced BLOBs, which greatly reduced the data publi
 npm i -g eth-blob-uploader
 
 // upload the two files, you can use our self-built Sepolia RPC: http://88.99.30.186:8545
-eth-blob-uploader -r <Sepolia RPC> -p 0x112233... -f app.html -t <any address>
-eth-blob-uploader -r <Sepolia RPC> -p 0x112233... -f degen.jpeg -t <any address>   
+eth-blob-uploader -r <Sepolia RPC> -p 0x112233... -f dist/app.html -t <any address>
+eth-blob-uploader -r <Sepolia RPC> -p 0x112233... -f dist/degen.jpeg -t <any address>   
 ```
 You can see it only takes 2 transactions to upload the two files, and the cost is incredibly low when the BLOB gas price is low!
 
@@ -130,6 +147,11 @@ ethfs-cli upload -f dist -a <flat directory address> -c 11155111 -p 0x112233... 
 The deployment required only 2 transactions, costing us 0.024 ETH, with the blob price at 31 GWei at the time of deployment. As a result, the upload constituted a significant portion of the total cost.
 
 You can access this unstoppable dApp via web3://:
+
+
+    web3://<flat directory address>:3333/app.html
+
+For example, 
 
 [web3://0x56b4C1B43633cE048e4D03664D31B18e56ce6943:3333/app.html](https://0x56b4c1b43633ce048e4d03664d31b18e56ce6943.3333.w3link.io/app.html)
 
