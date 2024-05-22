@@ -2,6 +2,10 @@
 
 In this article, we will demonstrate how to deploy the simplest unstoppable dApp using the [ethfs-cli](https://github.com/ethstorage/ethfs-cli/) tool.
 
+> ℹ️ **_System Requirements:_** 
+- MacOS Version 14+, Ubuntu 20.04+, or Windows with WSL (Windows Subsystem for Linux) version 2
+- Node.js 17+
+
 For the content to be deployed, let's assume that:
 - There is an application folder (e.g., `dist`), which contains two files inside (e.g., `app.html` and [degen.jpeg](https://gist.github.com/assets/5291653/4526caf3-9218-4a23-8619-02f777e6e7fd)).
 - The `app.html` file displays a greeting message from a smart contract and a degen image (264KB). It's very simple:
@@ -26,7 +30,8 @@ For the content to be deployed, let's assume that:
     </body>	
 </html>
 ```
- - The referenced contract in app.html is also simple. It contains only one method that returns a string and is already deployed on Sepolia at `0xf14e64285Db115D3711cC5320B37264708A47f89`.
+ - The referenced contract in app.html is also simple. It contains only one method that returns a string and is already deployed on Sepolia at `0xf14e64285Db115D3711cC5320B37264708A47f89`. 
+ You are encouraged to develop your own smart contract to generate fancy content, and change this address to your own.
 ```
 pragma solidity >=0.8.2 <0.9.0;
 contract App {
@@ -39,7 +44,8 @@ Overall, the primary objective is to upload these two files to the chain and the
 
 [web3://0x56b4c1b43633ce048e4d03664d31b18e56ce6943:3333/app.html](https://0x56b4c1b43633ce048e4d03664d31b18e56ce6943.3333.w3link.io/app.html)
 
-_Note: Due to the drastic changes in the gas prices on the Sepolia network, it is hard to accurately predict the required gas fees. It is recommended to prepare at least 1 Sepolia ETH in the account before testing._
+ℹ️ **_Note:_**
+_Due to the drastic changes in the gas prices on the Sepolia network, it is hard to accurately predict the required gas fees. It is recommended to prepare at least 1 Sepolia ETH in the account before testing._
 
 ## Step 1: Install ethfs-cli
 If you have not already done so, you can install ethfs-cli using the following command:
@@ -81,11 +87,11 @@ Total Cost: 0.6 ETH
 ```
 It took 12 transactions to deploy the application, costing us about 0.6 ETH at the gas price of 10 Gwei, due to the high costs of Ethereum's native storage. Nonetheless, now you can access this unstoppable dApp via web3://:
 
-    web3://<flat directory address>:sep/app.html
+    web3://<flat directory address>:11155111/app.html
 
 For example, 
 
-[web3://0x49EDFB27a463545337487D39a8349760B345F160:sep/app.html](https://0x49edfb27a463545337487d39a8349760b345f160.sep.w3link.io/app.html)
+[web3://0x49EDFB27a463545337487D39a8349760B345F160:11155111/app.html](https://0x49edfb27a463545337487d39a8349760b345f160.sep.w3link.io/app.html)
 
 
 You may have noticed that the hyperlink directs to `w3link.io`, which serves as a [web3:// gateway](https://docs.web3url.io/web3-clients/https-gateway) facilitating users in accessing the web3 protocol engine from browsers like Chrome.
